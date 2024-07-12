@@ -1,0 +1,16 @@
+{
+    "name": "webkul/aliexpress",
+    "description": "For AliExpress API",
+    "version": "1.0.0",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "psr-4": {
+            "AliExpress\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
