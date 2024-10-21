@@ -6,7 +6,6 @@
  * @package    Webkul_AliExpress
  * @author     Webkul Software Private Limited
  * @copyright  Webkul Software Private Limited (https://webkul.com)
- * @license    https://store.webkul.com/license.html
  */
 namespace AliExpress;
 
