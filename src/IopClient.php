@@ -1,4 +1,13 @@
 <?php
+/**
+ * Webkul Software.
+ *
+ * @category   Webkul
+ * @package    Webkul_AliExpress
+ * @author     Webkul Software Private Limited
+ * @copyright  Webkul Software Private Limited (https://webkul.com)
+ * @license    https://store.webkul.com/license.html
+ */
 
 namespace AliExpress;
 
@@ -104,12 +113,12 @@ class IopClient
 
 		if ($errno) {
 			curl_close($ch);
-			throw new Exception($errno, 0);
+			throw new \Exception($errno, 0);
 		} else {
 			$httpStatusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 			curl_close($ch);
 			if (200 !== $httpStatusCode) {
-				throw new Exception($reponse, $httpStatusCode);
+				throw new \Exception($reponse, $httpStatusCode);
 			}
 		}
 
@@ -189,12 +198,12 @@ class IopClient
 		$errno = curl_errno($ch);
 		if ($errno) {
 			curl_close($ch);
-			throw new Exception($errno, 0);
+			throw new \Exception($errno, 0);
 		} else {
 			$httpStatusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 			curl_close($ch);
 			if (200 !== $httpStatusCode) {
-				throw new Exception($response, $httpStatusCode);
+				throw new \Exception($response, $httpStatusCode);
 			}
 		}
 
@@ -245,7 +254,7 @@ class IopClient
 			} else {
 				$resp = $this->curl_get($requestUrl, $apiParams, $request->headerParams);
 			}
-		} catch (Exception $e) {
+		} catch (\Exception $e) {
 			$this->logApiError($requestUrl, "HTTP_ERROR_" . $e->getCode(), $e->getMessage());
 			throw $e;
 		}
@@ -267,7 +276,7 @@ class IopClient
 	{
 		$localIp = isset($_SERVER["SERVER_ADDR"]) ? $_SERVER["SERVER_ADDR"] : "CLI";
 		$logger = new IopLogger;
-		$logger->conf["log_file"] = rtrim(IOP_SDK_WORK_DIR, '\\/') . '/' . "logs/iopsdk.log." . date("Y-m-d");
+		$logger->conf["log_file"] = rtrim(dirname(__FILE__), '\\/') . '/' . "logs/iopsdk.log." . date("Y-m-d");
 		$logger->conf["separator"] = "^_^";
 		$logData = array(
 			date("Y-m-d H:i:s"),
